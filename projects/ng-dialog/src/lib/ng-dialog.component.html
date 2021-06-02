@@ -1,0 +1,26 @@
+<div class="ui-dialog-overlay" [style.display]="(visible && backdrop) ? 'block' : 'none'"></div>
+
+<div class="ui-dialog" tabindex="-1" role="dialog" #dialogRoot appResizable [south]="isResizable" [east]="isResizable"
+  [southEast]="isResizable" (resizing)="onResize($event)" appDraggable [isDraggle]="isDraggle"
+  [dragEventTarget]="dragEventTarget" [style.display]="visible ? 'block' : 'none'" (mousedown)="moveOnTop()"
+  (touchstart)="moveOnTop()">
+  <div class="ui-dialog-header" #dialogHeader (mousedown)="initDrag($event)" (touchstart)="initDrag($event)">
+    <div class="ui-titlebar">
+      <ng-content select=".app-dialog-header"></ng-content>
+    </div>
+    <div class="ui-controlbar">
+      <i class="ui-icon" *ngIf="maximizable" (click)="toggleMaximize($event)"
+        [ngClass]="{'dt-icon-maximize': !maximized, 'dt-icon-normalize': maximized}">
+      </i>
+      <i class="ui-icon dt-icon-close" #closeIcon (click)="hide()">
+      </i>
+    </div>
+  </div>
+
+  <div class="ui-dialog-body" #dialogBody>
+    <ng-content select=".app-dialog-body"></ng-content>
+  </div>
+  <div class="ui-dialog-footer" *ngIf="!hideFooter" #dialogFooter>
+    <ng-content select=".app-dialog-footer"></ng-content>
+  </div>
+</div>

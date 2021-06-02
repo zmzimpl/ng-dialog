@@ -10,6 +10,12 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "paths": {
+      "ng-dialog": [
+        "dist/ng-dialog/ng-dialog",
+        "dist/ng-dialog"
+      ]
+    },
     "target": "es2015",
     "module": "es2020",
     "lib": [
